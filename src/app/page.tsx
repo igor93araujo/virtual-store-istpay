@@ -1,8 +1,9 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import AppProvider from '../context/AppProvider';
 
 export default function Home() {
   return (
-    <p>start</p>
+    <AppProvider>
+      <p>teste</p>
+    </AppProvider>
   )
 }
