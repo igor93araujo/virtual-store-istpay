@@ -1,6 +1,8 @@
 'use client'
+import Button from '@/components/button/Button';
+import Loading from '@/components/loading/Loading';
 import Image from 'next/image';
-import React, { useState, useEffect, use } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Main = () => {
 
@@ -20,18 +22,24 @@ const Main = () => {
   return (
     <section>
       <h1>Products</h1>
-      <div>
         {
-        productsList &&
+        productsList ?
         productsList.map((product) => (
           <div key={product.id}>
-            <h2>{product.title}</h2>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
             <Image src={product.image} alt={product.title} width={200} height={200} />
+            <div>
+             <h2>{product.title}</h2>
+             <p>{product.description}</p>
+             <p>{product.price}</p>
+             <p>{`Rate: ${product.rating.rate}`}</p>
             </div>
-        ))}
-      </div>
+            <div>
+              <Button title="Add to cart" />
+            </div>
+          </div>
+        )) : <Loading />
+       
+       }
     </section>
   )
 }

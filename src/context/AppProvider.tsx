@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react';
-import { AppContext } from './AppContext';
+import { AppContext } from './AppContext.js';
 
 function AppProvider({ children }) {
   
