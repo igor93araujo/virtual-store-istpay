@@ -1,12 +1,11 @@
 import Aside from '@/components/aside/Aside';
-import AppProvider from '../context/AppProvider';
 import Main from '../pages/home/page';
 
 export default function Home() {
   return (
-    <AppProvider>
+    <section className='homePage'>
       <Aside />
       <Main />
-    </AppProvider>
+    </section>
   )
 }

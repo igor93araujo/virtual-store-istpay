@@ -1,34 +1,20 @@
 'use client'
+import React, { createContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 
-import { useMemo, useState } from 'react';
-import { AppContext } from './AppContext.js';
+type ContextType = {
+  selectedCategory: string;
+  setSelectedCategory: Dispatch<SetStateAction<string>>;
+};
 
-function AppProvider({ children }) {
-  
-
-  const [ productCategory, setProductCategory ] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  const context = useMemo(
-    () => ({
-      productCategory,
-      setProductCategory,
-      cart,
-      setCart,
-    }),
-    [
-      productCategory,
-      setProductCategory,
-      cart,
-      setCart,
-    ],
-  );
+const AppContext = createContext<ContextType | null>(null);
+const AppProvider = ({ children }: { children: ReactNode }) => {
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
-    <AppContext.Provider value={ context }>
+    <AppContext.Provider value={{ selectedCategory, setSelectedCategory }}>
       {children}
     </AppContext.Provider>
   );
-}
+};
 
-export default AppProvider;
+export { AppContext, AppProvider };
