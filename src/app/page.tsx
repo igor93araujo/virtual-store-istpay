@@ -1,11 +1,5 @@
-import Aside from '@/components/aside/Aside';
-import Main from '../pages/home/page';
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <section className='homePage'>
-      <Aside />
-      <Main />
-    </section>
-  )
+export default function HomePage() {
+  redirect('/home')
 }
