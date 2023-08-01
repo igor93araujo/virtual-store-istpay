@@ -2,7 +2,7 @@
 import Header from '@/components/header/Header';
 import { AppContext } from '@/context/AppProvider';
 import Image from 'next/image';
-import React, { use, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 
 export default function Details() {

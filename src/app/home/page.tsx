@@ -13,7 +13,7 @@ const Home = () => {
   const [productsList, setProductsList] = useState<product[]>([]);
 
   const context = useContext(AppContext);
-  const { selectedCategory, setSelectedProduct } = context || {};
+  const { selectedCategory, setSelectedProduct, setCart } = context || {};
 
   const { push } = useRouter();
 
@@ -57,6 +57,13 @@ const Home = () => {
     }
   };
 
+  const handleCart = (id: number) => {
+    const productToAdd = productsList.find((product) => product.id === id);
+    if (productToAdd) {
+      setCart((prevCart) => [...prevCart, productToAdd]);
+    }
+  }
+
   return (
     <section>
       <Header />
@@ -75,7 +82,10 @@ const Home = () => {
                 type="button"
                 onClick={() => handleProductDetails(product.id)}
               > More details </button>
-              <Button title="Add to cart" />
+              <button
+                type='button'
+                onClick={() => handleCart(product.id)}
+                > Add to Card </button>
             </div>
           </div>
         ))) : (<Loading />)

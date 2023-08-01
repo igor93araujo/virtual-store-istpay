@@ -6,15 +6,18 @@ type ContextType = {
   setSelectedCategory: Dispatch<SetStateAction<string>>;
   selectedProduct: any;
   setSelectedProduct: Dispatch<SetStateAction<any>>;
+  cart: any,
+  setCart: Dispatch<SetStateAction<any>>;
 };
 
 const AppContext = createContext<ContextType | null>(null);
 const AppProvider = ({ children }: { children: ReactNode }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [ selectedProduct, setSelectedProduct ] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState([]);
+  const [cart, setCart] = useState([]);
 
   return (
-    <AppContext.Provider value={{ selectedCategory, setSelectedCategory, selectedProduct, setSelectedProduct }}>
+    <AppContext.Provider value={{ selectedCategory, setSelectedCategory, selectedProduct, setSelectedProduct, cart, setCart }}>
       {children}
     </AppContext.Provider>
   );

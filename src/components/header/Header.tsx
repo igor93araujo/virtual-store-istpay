@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { BsCart4 } from 'react-icons/bs'
 
 function Header() {
   return (
@@ -10,6 +11,12 @@ function Header() {
       width="100"
       height="50" />
       <p>Store</p>
+      <BsCart4
+        onClick={() => {
+          window.location.href = '/cart';
+        }
+      }
+      />
     </section>
   )
 }
