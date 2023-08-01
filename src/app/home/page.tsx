@@ -51,6 +51,8 @@ const Home = () => {
     const productDetails = productsList.find((product) => product.id === id);
     if (productDetails) {
       setSelectedProduct(productDetails);
+      //saving selectedProduct in localstorage
+      localStorage.setItem('selectedProduct', JSON.stringify(productDetails));
       push(`/details/`);
     }
   };
