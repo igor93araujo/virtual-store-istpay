@@ -1,5 +1,5 @@
-'use client';
-import Button from '@/components/button/Button';
+'use client'
+
 import Loading from '@/components/loading/Loading';
 import { AppContext } from '@/context/AppProvider';
 import { useRouter } from "next/navigation";
@@ -10,10 +10,8 @@ import Aside from '@/components/aside/Aside';
 
 const Home = () => {
 
-  const [productsList, setProductsList] = useState<product[]>([]);
-
   const context = useContext(AppContext);
-  const { selectedCategory, setSelectedProduct, setCart } = context || {};
+  const { selectedCategory, setSelectedProduct, setCart, productsList, setProductsList } = context || {};
 
   const { push } = useRouter();
 

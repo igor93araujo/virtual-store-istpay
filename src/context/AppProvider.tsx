@@ -8,6 +8,8 @@ type ContextType = {
   setSelectedProduct: Dispatch<SetStateAction<any>>;
   cart: any,
   setCart: Dispatch<SetStateAction<any>>;
+  productsList: any,
+  setProductsList: Dispatch<SetStateAction<any>>;
 };
 
 const AppContext = createContext<ContextType | null>(null);
@@ -15,6 +17,7 @@ const AppContext = createContext<ContextType | null>(null);
 const AppProvider = ({ children }: { children: ReactNode }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedProduct, setSelectedProduct] = useState([]);
+  const [productsList, setProductsList] =useState([]);
   const [cart, setCart] = useState([]);
 
   const values = {
@@ -23,7 +26,9 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
     selectedProduct,
     setSelectedProduct,
     cart,
-    setCart
+    setCart,
+    productsList,
+    setProductsList,
   }
 
   return (

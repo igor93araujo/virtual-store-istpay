@@ -3,7 +3,6 @@ import Header from '@/components/header/Header';
 import { AppContext } from '@/context/AppProvider';
 import Image from 'next/image';
 import React, { useContext, useEffect } from 'react'
-import Carousel from 'react-bootstrap/Carousel';
 import { useRouter } from "next/navigation";
 
 export default function Details() {
@@ -11,9 +10,9 @@ export default function Details() {
   const { push } = useRouter();
 
   const context = useContext(AppContext);
-  const { selectedProduct, setSelectedProduct } = context || {};
+  const { selectedProduct, setSelectedProduct, productsList, setCart} = context || {};
 
-  const { title, price, description, category, image, rating } = selectedProduct;
+  const {id, title, price, description, category, image } = selectedProduct;
 
   useEffect(() => {
     const localStorageVerify = async () => {
@@ -27,6 +26,13 @@ export default function Details() {
   }, [
     setSelectedProduct,
   ]);
+
+  const handleCart = (id: number) => {
+    const productToAdd = productsList.find((product) => product.id === id);
+    if (productToAdd) {
+      setCart((prevCart) => [...prevCart, productToAdd]);
+    }
+  }
 
   
   return (
@@ -45,9 +51,11 @@ export default function Details() {
             <p>{description}</p>
             <p>{price}</p>
             <p>{category}</p>
-{/*             <p>{rating.rate}</p>
-            <p>{rating.count}</p> */}
-            <button type="button">Add to cart</button>
+            <button
+              type="button"
+              onClick={() => handleCart(id)}>
+                Add to cart
+            </button>
           </div>
       ) : <p>Nenhum produto selecionado</p>
        }
