@@ -84,8 +84,9 @@ const Home = () => {
               > More details </button>
               <button
                 type='button'
-                onClick={() => handleCart(product.id)}
-                > Add to Card </button>
+                onClick={() => handleCart(product.id)}>
+                Add to Card
+              </button>
             </div>
           </div>
         ))) : (<Loading />)

@@ -2,25 +2,31 @@
 import Header from '@/components/header/Header';
 import { AppContext } from '@/context/AppProvider';
 import Image from 'next/image';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
+import { useRouter } from "next/navigation";
 
 export default function Details() {
   
+  const { push } = useRouter();
+
   const context = useContext(AppContext);
   const { selectedProduct, setSelectedProduct } = context || {};
 
   const { title, price, description, category, image, rating } = selectedProduct;
 
-/*   useEffect(() => {
-    const localStoreVerify = () => {
-      const selectedProduct = localStorage.getItem('selectedProduct');
-      if (selectedProduct) {
-        setSelectedProduct(JSON.parse(selectedProduct));
+  useEffect(() => {
+    const localStorageVerify = async () => {
+      const recoveredItem = await localStorage.getItem('selectedProduct');
+      if (recoveredItem) {
+        console.log('selectedProduct', recoveredItem);
+        setSelectedProduct(JSON.parse(recoveredItem));
       }
     };
-    localStoreVerify();
-  }, [setSelectedProduct]); */
+    localStorageVerify();
+  }, [
+    setSelectedProduct,
+  ]);
 
   
   return (
@@ -28,36 +34,23 @@ export default function Details() {
       <Header />
       <button
         type='button'
-        onClick={() => {
-          window.location.href = '/home';
-        }}
+        onClick={() => { push('/home')} }
       >
         Home
       </button>
-      {
-        selectedProduct ? (
+      { selectedProduct ? (
           <div style={{ display: 'block', width: 700, padding: 30 }}>
             <h1>{title}</h1>
-              <Carousel fade>
-                <Carousel.Item>
-                  <Image src={image} alt={title} width={200} height={200} className='d-block w-100'/>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <Image src={image} alt={title} width={200} height={200} className='d-block w-100'/>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <Image src={image} alt={title} width={200} height={200} className='d-block w-100'/>
-                </Carousel.Item>
-              </Carousel>
+            <Image src={image} alt='cartItem' width={200} height={200}/>
             <p>{description}</p>
             <p>{price}</p>
             <p>{category}</p>
-            <p>{rating.rate}</p>
-            <p>{rating.count}</p>
+{/*             <p>{rating.rate}</p>
+            <p>{rating.count}</p> */}
             <button type="button">Add to cart</button>
           </div>
-        )
-       : <p>Nenhum item selecionado</p> }
+      ) : <p>Nenhum produto selecionado</p>
+       }
     </section>
   )
 }

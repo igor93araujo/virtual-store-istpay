@@ -11,13 +11,23 @@ type ContextType = {
 };
 
 const AppContext = createContext<ContextType | null>(null);
+
 const AppProvider = ({ children }: { children: ReactNode }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [cart, setCart] = useState([]);
 
+  const values = {
+    selectedCategory,
+    setSelectedCategory,
+    selectedProduct,
+    setSelectedProduct,
+    cart,
+    setCart
+  }
+
   return (
-    <AppContext.Provider value={{ selectedCategory, setSelectedCategory, selectedProduct, setSelectedProduct, cart, setCart }}>
+    <AppContext.Provider value={values}>
       {children}
     </AppContext.Provider>
   );

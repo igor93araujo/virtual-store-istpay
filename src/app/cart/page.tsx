@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function Cart() {
 
  const context = useContext(AppContext);
- const { cart } = context || {};
+  const { cart } = context || {};
 
  console.log(cart)
 
@@ -23,7 +23,7 @@ export default function Cart() {
               <p>{product.price}</p>
             </div>
           </div>
-        ))) : <p>Nenhum item no carrinho</p>
+        ))) : <p>Nenhum item no carrinho (ainda)</p>
         }
     </section>
   );

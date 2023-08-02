@@ -1,8 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
 import { BsCart4 } from 'react-icons/bs'
+import { useRouter } from "next/navigation";
 
 function Header() {
+
+  const { push } = useRouter();
+
   return (
     <section>
      <Image 
@@ -12,9 +16,7 @@ function Header() {
       height="50" />
       <p>Store</p>
       <BsCart4
-        onClick={() => {
-          window.location.href = '/cart';
-        }
+        onClick={() => { push('/cart')}
       }
       />
     </section>
