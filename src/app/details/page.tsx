@@ -10,15 +10,14 @@ export default function Details() {
   const { push } = useRouter();
 
   const context = useContext(AppContext);
-  const { selectedProduct, setSelectedProduct, productsList, setCart} = context || {};
+  const { selectedProduct, setSelectedProduct, productsList, setCart, cart} = context || {};
 
   const {id, title, price, description, category, image } = selectedProduct;
 
   useEffect(() => {
-    const localStorageVerify = async () => {
-      const recoveredItem = await localStorage.getItem('selectedProduct');
+    const localStorageVerify = () => {
+      const recoveredItem = localStorage.getItem('selectedProduct');
       if (recoveredItem) {
-        console.log('selectedProduct', recoveredItem);
         setSelectedProduct(JSON.parse(recoveredItem));
       }
     };
@@ -28,9 +27,11 @@ export default function Details() {
   ]);
 
   const handleCart = (id: number) => {
-    const productToAdd = productsList.find((product) => product.id === id);
+    const productToAdd = productsList.find((product: any) => product.id === id);
     if (productToAdd) {
-      setCart((prevCart) => [...prevCart, productToAdd]);
+      setCart((prevCart: any) => [...prevCart, productToAdd]);
+      const cartStorage = JSON.stringify([...cart, productToAdd]);
+      localStorage.setItem('cartStorage', cartStorage);
     }
   }
 

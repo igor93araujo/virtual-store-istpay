@@ -11,7 +11,7 @@ import Aside from '@/components/aside/Aside';
 const Home = () => {
 
   const context = useContext(AppContext);
-  const { selectedCategory, setSelectedProduct, setCart, productsList, setProductsList } = context || {};
+  const { selectedCategory, setSelectedProduct, setCart, productsList, setProductsList, cart} = context || {};
 
   const { push } = useRouter();
 
@@ -46,7 +46,7 @@ const Home = () => {
   }, [selectedCategory, setProductsList]);
 
   const handleProductDetails = (id: number) => {
-    const productDetails = productsList.find((product) => product.id === id);
+    const productDetails = productsList.find((product:any) => product.id === id);
     if (productDetails) {
       setSelectedProduct(productDetails);
       //saving selectedProduct in localstorage
@@ -56,9 +56,11 @@ const Home = () => {
   };
 
   const handleCart = (id: number) => {
-    const productToAdd = productsList.find((product) => product.id === id);
+    const productToAdd = productsList.find((product: any) => product.id === id);
     if (productToAdd) {
       setCart((prevCart) => [...prevCart, productToAdd]);
+      const cartStorage = JSON.stringify([...cart, productToAdd]);
+      localStorage.setItem('cartStorage', cartStorage);
     }
   }
 
@@ -68,7 +70,7 @@ const Home = () => {
       <Aside  />
       <h1>Products</h1>
       {selectedCategory !== undefined || selectedCategory !== 'all' ? (
-        productsList.map((product) => (
+        productsList.map((product: any) => (
           <div key={product.id}>
             <Image src={product.image} alt={product.title} width={200} height={200} />
             <div>
