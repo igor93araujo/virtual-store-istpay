@@ -67,30 +67,32 @@ const Home = () => {
   return (
     <section>
       <Header />
-      <Aside  />
-      <h1>Products</h1>
-      {selectedCategory !== undefined || selectedCategory !== 'all' ? (
-        productsList.map((product: any) => (
-          <div key={product.id}>
-            <Image src={product.image} alt={product.title} width={200} height={200} />
-            <div>
-              <h2>{product.title}</h2>
-              <p>{product.price}</p>
+      <div>
+        <Aside />
+        <h1>Products</h1>
+        {selectedCategory !== undefined || selectedCategory !== 'all' ? (
+          productsList.map((product: any) => (
+            <div key={product.id}>
+              <Image src={product.image} alt={product.title} width={200} height={200} />
+              <div>
+                <h2>{product.title}</h2>
+                <p>{product.price}</p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => handleProductDetails(product.id)}
+                > More details </button>
+                <button
+                  type='button'
+                  onClick={() => handleCart(product.id)}>
+                  Add to Card
+                </button>
+              </div>
             </div>
-            <div>
-              <button
-                type="button"
-                onClick={() => handleProductDetails(product.id)}
-              > More details </button>
-              <button
-                type='button'
-                onClick={() => handleCart(product.id)}>
-                Add to Card
-              </button>
-            </div>
-          </div>
-        ))) : (<Loading />)
-      }
+          ))) : (<Loading />)
+        } 
+      </div>
     </section>
   );
 }
