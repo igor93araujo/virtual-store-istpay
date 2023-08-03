@@ -1,8 +1,11 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Aside from '@/components/aside/Aside';
+import Main from '../pages/home/page';
 
 export default function Home() {
   return (
-    <p>start</p>
+    <section className='homePage'>
+      <Aside />
+      <Main />
+    </section>
   )
 }
