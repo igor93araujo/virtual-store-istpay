@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { BsCart4 } from 'react-icons/bs'
 import { useRouter } from "next/navigation";
-import './Header.css'
+import './index.css'
 
 function Header() {
 
