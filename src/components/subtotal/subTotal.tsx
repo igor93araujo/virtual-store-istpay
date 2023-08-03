@@ -36,12 +36,16 @@ export default function SubTotal() {
       ) : <p>Nenhum item no carrinho</p> 
     }
     <div>
-      <p>{`Sub-total: $ ${ total }`}</p>
+      <p>{`Sub-total: $ ${ Math.round(total * 100) / 100 }`}</p>
     </div>
 
     <button
       type="button"
-      className='finishBtn'>Finish purchase</button>
+      className='finishBtn'
+      onClick={() => { alert('Compra finalizada com sucesso! Obrigado por comprar conosco.') }}
+      >
+        Finish purchase
+    </button>
   </section>
   );
 }
