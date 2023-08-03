@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '@/context/AppProvider';
 import Loading from '../loading/Loading';
+import './index.css'
 
 function Aside() {
   const [categories, setCategories] = useState<string[]>([]);
@@ -27,15 +28,27 @@ function Aside() {
 
   return (
     <aside>
-      <h2>Categories</h2>
+      <h2 className='aside-title'>Categories</h2>
       {
        categories ? 
-       <><input type="checkbox" name="all" id="all" value="all"
+       <div className='category-input' >
+        <input
+        type="checkbox"
+        name="all"
+        id="all"
+        value="all"
         checked={selectedCategory === 'all'}
-        onChange={() => handleCategoryChange('all')} /><label htmlFor="all">All</label></> : <Loading />
+        onChange={() => handleCategoryChange('all')}
+         />
+        <label htmlFor="all">
+         All
+        </label>
+        </div> : <Loading />
       }
-      {categories.map((category: string) => (
-        <div key={category}>
+      {
+      categories ?
+      categories.map((category: string) => (
+        <div key={category} className='category-input'>
           <input
             type="checkbox"
             name={category}
@@ -44,9 +57,11 @@ function Aside() {
             checked={selectedCategory === category}
             onChange={() => handleCategoryChange(category)}
           />
-          <label htmlFor={category}>{category}</label>
+          <label htmlFor={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</label>
         </div>
-      ))}
+      ))
+    
+      : <Loading />}
     </aside>
   );
 }

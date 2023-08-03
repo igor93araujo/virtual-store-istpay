@@ -1,0 +1,147 @@
+.cartFullSection {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ width: 100%;
+}
+
+.cartFullSection p {
+ font-size: 20px;
+ font-weight: 600;
+}
+
+.cartCenter {
+ width: 100%;
+}
+
+.cartContainer {
+ display: flex;
+ position: relative;
+ justify-content: space-around;
+ align-items: flex-start;
+ margin-top: 20px;
+ flex-wrap: wrap;
+ width: 80%;
+ height: 100%;
+ padding-bottom: 30px;
+ gap: 20px;
+}
+
+.cartContainer > div {
+ display: flex;
+ flex-wrap: wrap;
+ align-items: center;
+ justify-content: center;
+ gap: 20px;
+
+}
+
+.cartContainerLeft {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: fit-content;
+ width: 350px;
+ height: 500px;
+ border-radius: 10px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+ padding-top: 20px;
+}
+
+.cartTitle {
+ color: #d86429;
+ font-size: 50px;
+ font-weight: 600;
+}
+
+
+.subtotal {
+ display: flex;
+ position: absolute;
+ top: 150px;
+ right: 0;
+ justify-content: center;
+ height: 100%;
+ width: 20%;
+}
+
+.cartContainerLeft > div {
+ margin: 10px;
+}
+
+.cartContainerLeft img {
+ width: 200px;
+ height: 200px;
+ mix-blend-mode: multiply;
+}
+
+.cartContainerTitle {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ gap: 20px;
+}
+
+.cartContainerTitle p {
+ display: flex;
+ align-self: flex-end;
+ font-size: 15px;
+}
+
+.cartContainerLeft h2 {
+ font-size: 20px;
+ font-weight: 600;
+}
+
+.cartContainerRight {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+
+.getBack-container {
+ display: flex;
+ align-items: flex-end;
+ align-self: flex-start;
+ gap: 10px;
+ width: 300px;
+ padding: 10px;
+ cursor: pointer;
+ margin-left: 20px;
+}
+
+.getBack-container:hover {
+ transition: all 0.3s ease-in-out;
+ color: #fe6921;
+}
+
+.getBack-container p {
+ font-size: 20px;
+ font-weight: 500;
+}
+
+button {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+
+ width: 100px;
+ height: 30px;
+ border: none;
+ border-radius: 10px;
+ background-color: #e73c3c;
+ color: aliceblue;
+ font-size: 15px;
+ font-weight: 600;
+ cursor: pointer;
+ margin-bottom: 20px;
+ margin-top: 20px;
+}
+
+button:hover {
+ transition: all 0.3s ease-in-out;
+ background-color: #eb0e0e;
+}
