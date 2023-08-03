@@ -1,0 +1,41 @@
+aside {
+    width: 20%;
+    height: 100%;
+    display: block;
+    padding: 20px;
+    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.aside-title {
+ font-size: 2rem;
+ font-weight: 600;
+ color: #f39511;
+ text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3),
+ 0 0 3px rgba(0, 0, 0, 0.3);
+ margin-bottom: 20px;
+}
+
+.category-input {
+ display: flex;
+ gap: 10px;
+ margin-bottom: 10px;
+}
+
+.category-input input {
+ width: 20px;
+ height: 20px;
+}
+
+.category-input label {
+ font-size: 1.2rem;
+ font-weight: 600;
+}
+
+.category-input input:hover, .category-input label:hover {
+ cursor: pointer;
+}
+
+.category-input label:hover {
+ color: #9c5e08;
+ transition: all 0.3s ease-in-out;
+}
