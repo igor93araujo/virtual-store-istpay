@@ -1,6 +1,7 @@
 import { AppContext } from '@/context/AppProvider';
 import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image';
+import './index.css'
 
 export default function SubTotal() {
 
@@ -22,14 +23,14 @@ export default function SubTotal() {
   }, [cart]);
 
   return (
-   <section>
+   <section className='subtotalContainer'>
     <p>Purchase Summary</p>
     {
       cart ? (
         cart.map((product:any) => (
-          <div key={product.id}>
+          <div key={product.id} className='subtotalContainer-item'>
             <Image src={product.image} alt={product.title} width={200} height={200} />
-            <p>{product.price}</p>
+            <p>{`$ ${product.price}`}</p>
           </div>
         ))
       ) : <p>Nenhum item no carrinho</p> 
@@ -37,6 +38,10 @@ export default function SubTotal() {
     <div>
       <p>{`Sub-total: $ ${ total }`}</p>
     </div>
+
+    <button
+      type="button"
+      className='finishBtn'>Finish purchase</button>
   </section>
   );
 }

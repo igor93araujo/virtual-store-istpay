@@ -85,13 +85,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
+    width: 80px;
     height: 30px;
     border-radius: 5px;
     background-color: #fe6921;
     cursor: pointer;
     color: aliceblue;
     font-weight: 500;
+    font-size: small;
 }
 
 .homeContainer-productBtns-details:hover,
