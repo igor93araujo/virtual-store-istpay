@@ -2,25 +2,38 @@
 import Header from '@/components/header/Header';
 import { AppContext } from '@/context/AppProvider';
 import Image from 'next/image';
-import React, { use, useContext, useEffect } from 'react'
-import Carousel from 'react-bootstrap/Carousel';
+import React, { useContext, useEffect } from 'react'
+import { useRouter } from "next/navigation";
 
 export default function Details() {
   
+  const { push } = useRouter();
+
   const context = useContext(AppContext);
-  const { selectedProduct, setSelectedProduct } = context || {};
+  const { selectedProduct, setSelectedProduct, productsList, setCart, cart} = context || {};
 
-  const { title, price, description, category, image, rating } = selectedProduct;
+  const {id, title, price, description, category, image } = selectedProduct;
 
-/*   useEffect(() => {
-    const localStoreVerify = () => {
-      const selectedProduct = localStorage.getItem('selectedProduct');
-      if (selectedProduct) {
-        setSelectedProduct(JSON.parse(selectedProduct));
+  useEffect(() => {
+    const localStorageVerify = () => {
+      const recoveredItem = localStorage.getItem('selectedProduct');
+      if (recoveredItem) {
+        setSelectedProduct(JSON.parse(recoveredItem));
       }
     };
-    localStoreVerify();
-  }, [setSelectedProduct]); */
+    localStorageVerify();
+  }, [
+    setSelectedProduct,
+  ]);
+
+  const handleCart = (id: number) => {
+    const productToAdd = productsList.find((product: any) => product.id === id);
+    if (productToAdd) {
+      setCart((prevCart: any) => [...prevCart, productToAdd]);
+      const cartStorage = JSON.stringify([...cart, productToAdd]);
+      localStorage.setItem('cartStorage', cartStorage);
+    }
+  }
 
   
   return (
@@ -28,36 +41,25 @@ export default function Details() {
       <Header />
       <button
         type='button'
-        onClick={() => {
-          window.location.href = '/home';
-        }}
+        onClick={() => { push('/home')} }
       >
         Home
       </button>
-      {
-        selectedProduct ? (
+      { selectedProduct ? (
           <div style={{ display: 'block', width: 700, padding: 30 }}>
             <h1>{title}</h1>
-              <Carousel fade>
-                <Carousel.Item>
-                  <Image src={image} alt={title} width={200} height={200} className='d-block w-100'/>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <Image src={image} alt={title} width={200} height={200} className='d-block w-100'/>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <Image src={image} alt={title} width={200} height={200} className='d-block w-100'/>
-                </Carousel.Item>
-              </Carousel>
+            <Image src={image} alt='cartItem' width={200} height={200}/>
             <p>{description}</p>
             <p>{price}</p>
             <p>{category}</p>
-            <p>{rating.rate}</p>
-            <p>{rating.count}</p>
-            <button type="button">Add to cart</button>
+            <button
+              type="button"
+              onClick={() => handleCart(id)}>
+                Add to cart
+            </button>
           </div>
-        )
-       : <p>Nenhum item selecionado</p> }
+      ) : <p>Nenhum produto selecionado</p>
+       }
     </section>
   )
 }

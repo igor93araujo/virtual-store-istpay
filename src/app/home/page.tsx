@@ -1,5 +1,5 @@
-'use client';
-import Button from '@/components/button/Button';
+'use client'
+
 import Loading from '@/components/loading/Loading';
 import { AppContext } from '@/context/AppProvider';
 import { useRouter } from "next/navigation";
@@ -10,10 +10,8 @@ import Aside from '@/components/aside/Aside';
 
 const Home = () => {
 
-  const [productsList, setProductsList] = useState<product[]>([]);
-
   const context = useContext(AppContext);
-  const { selectedCategory, setSelectedProduct } = context || {};
+  const { selectedCategory, setSelectedProduct, setCart, productsList, setProductsList, cart} = context || {};
 
   const { push } = useRouter();
 
@@ -48,7 +46,7 @@ const Home = () => {
   }, [selectedCategory, setProductsList]);
 
   const handleProductDetails = (id: number) => {
-    const productDetails = productsList.find((product) => product.id === id);
+    const productDetails = productsList.find((product:any) => product.id === id);
     if (productDetails) {
       setSelectedProduct(productDetails);
       //saving selectedProduct in localstorage
@@ -57,13 +55,22 @@ const Home = () => {
     }
   };
 
+  const handleCart = (id: number) => {
+    const productToAdd = productsList.find((product: any) => product.id === id);
+    if (productToAdd) {
+      setCart((prevCart) => [...prevCart, productToAdd]);
+      const cartStorage = JSON.stringify([...cart, productToAdd]);
+      localStorage.setItem('cartStorage', cartStorage);
+    }
+  }
+
   return (
     <section>
       <Header />
       <Aside  />
       <h1>Products</h1>
       {selectedCategory !== undefined || selectedCategory !== 'all' ? (
-        productsList.map((product) => (
+        productsList.map((product: any) => (
           <div key={product.id}>
             <Image src={product.image} alt={product.title} width={200} height={200} />
             <div>
@@ -75,7 +82,11 @@ const Home = () => {
                 type="button"
                 onClick={() => handleProductDetails(product.id)}
               > More details </button>
-              <Button title="Add to cart" />
+              <button
+                type='button'
+                onClick={() => handleCart(product.id)}>
+                Add to Card
+              </button>
             </div>
           </div>
         ))) : (<Loading />)
