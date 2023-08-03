@@ -3,7 +3,6 @@ aside {
     height: 100%;
     display: block;
     padding: 20px;
-    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3);
 }
 
 .aside-title {

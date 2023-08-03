@@ -45,7 +45,9 @@ function Aside() {
         </label>
         </div> : <Loading />
       }
-      {categories.map((category: string) => (
+      {
+      categories ?
+      categories.map((category: string) => (
         <div key={category} className='category-input'>
           <input
             type="checkbox"
@@ -55,9 +57,11 @@ function Aside() {
             checked={selectedCategory === category}
             onChange={() => handleCategoryChange(category)}
           />
-          <label htmlFor={category}>{category}</label>
+          <label htmlFor={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</label>
         </div>
-      ))}
+      ))
+    
+      : <Loading />}
     </aside>
   );
 }

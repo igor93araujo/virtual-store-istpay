@@ -10,6 +10,8 @@ type ContextType = {
   setCart: Dispatch<SetStateAction<any>>;
   productsList: any,
   setProductsList: Dispatch<SetStateAction<any>>;
+  cartCount: number,
+  setCartCount: Dispatch<SetStateAction<number>>;
 };
 
 const AppContext = createContext<ContextType | null>(null);
@@ -19,6 +21,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [productsList, setProductsList] =useState([]);
   const [cart, setCart] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
 
   const values = {
     selectedCategory,
@@ -29,6 +32,8 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
     setCart,
     productsList,
     setProductsList,
+    cartCount,
+    setCartCount
   }
 
   return (
