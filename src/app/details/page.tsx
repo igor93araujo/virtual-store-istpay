@@ -37,6 +37,10 @@ export default function Details() {
       localStorage.setItem('cartStorage', cartStorage);
     }
   }
+
+  if(!description) {
+    return null;
+  }
   
   
   return (
