@@ -16,27 +16,27 @@ export default function Cart() {
   const { push } = useRouter();
 
   const removeItem = (id: string) => {
-    const newCart = cart.filter((item:any) => item.id !== id);
+    if (!cart) return; // Verifica se o cart é undefined antes de continuar
+    const newCart = cart.filter((item: any) => item.id !== id);
     setCart(newCart);
-    //removing item from localstorage
     localStorage.setItem('cartStorage', JSON.stringify(newCart));
-    setCartCount(newCart.length);
-    
-  }
+  };
 
   useEffect(() => {
-  const verifyCartStorage = () => {
-    const recoveredCart = localStorage.getItem('cartStorage');
-    console.log(recoveredCart)
-    if (recoveredCart) {
-      setCart(JSON.parse(recoveredCart));
-    }
-  };
-  verifyCartStorage();
+    const verifyCartStorage = () => {
+      const recoveredCart = localStorage.getItem('cartStorage');
+      console.log(recoveredCart);
+      if (recoveredCart) {
+        setCart(JSON.parse(recoveredCart));
+      }
+    };
+    verifyCartStorage();
   }, [setCart, setCartCount]);
 
-
-
+  if (!context) {
+    // Caso o contexto não tenha sido carregado ainda, pode renderizar uma mensagem ou um componente de carregamento
+    return <div>Carregando...</div>;
+  }
 
   return (
     <section className='cartFullSection'>
@@ -46,7 +46,7 @@ export default function Cart() {
         <p>Voltar</p>
       </div>
      <h2 className='cartTitle'>Carrinho</h2>
-     <div className='cartCenter'>
+     <div className='cartC'>
         <div className='cartContainer'>
           {
             cart.length !== 0 ? (

@@ -3,11 +3,10 @@ import Image from 'next/image';
 import { BsCart4 } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
 import './index.css';
-import { AppContext } from '@/context/AppProvider';
 
 function Header() {
   const { push } = useRouter();
-  const storage = localStorage.getItem('cartStorage') || '[]';
+  const storage = typeof window !== 'undefined' && localStorage.getItem('cartStorage') || '[]';
   const cartItems = JSON.parse(storage);
   const cartCount = cartItems.length;
 

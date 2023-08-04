@@ -49,7 +49,7 @@ const Home = () => {
           return product.category === selectedCategory;
         }
       });
-      setProductsList(filteredData);
+      setProductsList?.(filteredData);
 
       const totalFilteredProducts = filteredData.length;
       const totalPagesFiltered = Math.ceil(totalFilteredProducts / productsPerPage);
@@ -64,7 +64,7 @@ const Home = () => {
   const handleProductDetails = (id: number) => {
     const productDetails = productsList.find((product:any) => product.id === id);
     if (productDetails) {
-      setSelectedProduct(productDetails);
+      setSelectedProduct?.(productDetails);
       //saving selectedProduct in localstorage
       localStorage.setItem('selectedProduct', JSON.stringify(productDetails));
       push(`/details/`);
@@ -74,9 +74,9 @@ const Home = () => {
   const handleCart = (id: number) => {
     const productToAdd = productsList.find((product: any) => product.id === id);
     if (productToAdd) {
-      setCart((prevCart) => [...prevCart, productToAdd]);
+      setCart?.((prevCart:any) => [...prevCart, productToAdd]);
       const cartStorage = JSON.stringify([...cart, productToAdd]);
-      setCartCount((prevCount) => prevCount + 1);
+      setCartCount?.((prevCount) => prevCount + 1);
       localStorage.setItem('cartStorage', cartStorage);
     }
   };
