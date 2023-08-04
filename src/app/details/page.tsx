@@ -58,10 +58,10 @@ export default function Details() {
           <div className='detail-item-container'>
               <Image src={image} alt='cartItem' width={200} height={200}/>
               <div className='detail-item-container-right'>
-                <h4>{description?.charAt(0).toUpperCase() + description.slice(1)}</h4>
+                <h4>{description}</h4>
                 <p>{`Price: $${price}`}</p>
                 <span>{`Category: ${category}`}</span>
-                <button
+                <button 
                   type="button"
                   onClick={() => handleCart(id)}>
                     Add to cart
