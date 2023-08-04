@@ -20,7 +20,7 @@ export default function Details() {
     const localStorageVerify = () => {
       const recoveredItem = localStorage.getItem('selectedProduct');
       if (recoveredItem) {
-        setSelectedProduct(JSON.parse(recoveredItem));
+        setSelectedProduct?.(JSON.parse(recoveredItem));
       }
     };
     localStorageVerify();
@@ -31,9 +31,9 @@ export default function Details() {
   const handleCart = (id: number) => {
     const productToAdd = productsList.find((product: any) => product.id === id);
     if (productToAdd) {
-      setCart((prevCart) => [...prevCart, productToAdd]);
+      setCart?.((prevCart:any) => [...prevCart, productToAdd]);
       const cartStorage = JSON.stringify([...cart, productToAdd]);
-      setCartCount((prevCount) => prevCount + 1);
+      setCartCount?.((prevCount) => prevCount + 1);
       localStorage.setItem('cartStorage', cartStorage);
     }
   }
