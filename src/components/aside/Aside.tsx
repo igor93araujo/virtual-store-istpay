@@ -57,7 +57,7 @@ function Aside() {
             checked={selectedCategory === category}
             onChange={() => handleCategoryChange(category)}
           />
-          <label htmlFor={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</label>
+          <label htmlFor={category}>{category?.charAt(0).toUpperCase() + category.slice(1)}</label>
         </div>
       ))
     

@@ -54,7 +54,7 @@ export default function Cart() {
                 <div key={product.id} className='cartContainerLeft' >
                   <Image src={product.image} alt={product.title} width={200} height={200} />
                   <div className="cartContainerTitle">
-                    <h2>{product.title.charAt(0).toUpperCase() + product.title.slice(1)}</h2>
+                    <h2>{product.title?.charAt(0).toUpperCase() + product.title.slice(1)}</h2>
                     <p>{`Price: $${product.price}`}</p>
                   </div>
                   <button
