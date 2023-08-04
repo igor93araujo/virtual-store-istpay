@@ -54,6 +54,6 @@ Se você tiver alguma dúvida ou feedback, fique à vontade para entrar em conta
 
 Obrigado!
 
-Igor Barbosa
-igoraraujobda@gmail.com
-https://www.linkedin.com/in/igoraraujo-dev/
+Igor Barbosa</br>
+igoraraujobda@gmail.com</br>
+https://www.linkedin.com/in/igoraraujo-dev/</br>
