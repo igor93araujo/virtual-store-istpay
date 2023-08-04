@@ -18,7 +18,7 @@ export default function Cart() {
   const removeItem = (id: string) => {
     if (!cart) return; // Verifica se o cart é undefined antes de continuar
     const newCart = cart.filter((item: any) => item.id !== id);
-    setCart(newCart);
+    setCart?.(newCart);
     localStorage.setItem('cartStorage', JSON.stringify(newCart));
   };
 
@@ -27,7 +27,7 @@ export default function Cart() {
       const recoveredCart = localStorage.getItem('cartStorage');
       console.log(recoveredCart);
       if (recoveredCart) {
-        setCart(JSON.parse(recoveredCart));
+        setCart?.(JSON.parse(recoveredCart));
       }
     };
     verifyCartStorage();
